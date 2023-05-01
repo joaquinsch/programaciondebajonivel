@@ -102,12 +102,12 @@ int main(){
     lista = prepend(lista, 1);
     lista = prepend(lista, 30);
 
-    lista = eliminar(lista, 1);
+    lista = eliminar(lista, 23);
 
     imprimirLista(lista);
 
     printf("La cantidad de nodos de la lista es: %d \n", tamanio(lista));
-    printf("Se encontro en la posicion: %d\n" ,buscar(lista, 4));
+    printf("Se encontro el valor en la posicion: %d\n" ,buscar(lista, 4));
 
     return 0;
 
