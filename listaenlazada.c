@@ -98,6 +98,8 @@ int main(){
     lista = append(lista, 4);
     lista = append(lista, 23);
 
+    lista = prepend(lista,7);
+
     lista = eliminar(lista,23);
 
     imprimirLista(lista);
