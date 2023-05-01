@@ -61,12 +61,12 @@ int buscar(Nodo* head,int valor){
     }
     return -1;
 }
-// Elimina el primer nodo que tenga el valor dado
+// Elimina el primer nodo que tenga el valor dado.
+// falta lo de free() q no entiendo
 Nodo* eliminar(Nodo* head,int valor){
     if(head == NULL){
         exit(0);
     }
-
     if(head->valor == valor){
         head = head->proximo;
         return head;
@@ -75,11 +75,11 @@ Nodo* eliminar(Nodo* head,int valor){
     while(actual->proximo != NULL){
         if(actual->proximo->valor == valor){
             actual->proximo = actual->proximo->proximo;
-
-
+            return head;
         }
         actual = actual->proximo;
     }
+
     return head;
 }
 
@@ -97,24 +97,14 @@ int main(){
     lista = append(lista, 3);
     lista = append(lista, 4);
     lista = append(lista, 23);
-    lista = append(lista, 6);
 
-    lista = prepend(lista, 1);
-    lista = prepend(lista, 30);
-
-
-    lista = eliminar(lista, 23);
-
-    lista = eliminar(lista, 1);
-
+    lista = eliminar(lista,23);
 
     imprimirLista(lista);
 
     printf("La cantidad de nodos de la lista es: %d \n", tamanio(lista));
 
     printf("Se encontro el valor en la posicion: %d\n" ,buscar(lista, 4));
-
-    printf("Se encontro en la posicion: %d\n" ,buscar(lista, 4));
 
 
     return 0;
