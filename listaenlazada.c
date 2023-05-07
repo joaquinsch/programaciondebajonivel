@@ -8,6 +8,7 @@ typedef struct structNodo{
 
 }Nodo;
 
+// Crea un nodo con puntero al proximo en NULL
 Nodo* crearNodo(int valor) {
     Nodo* nuevo = malloc(sizeof(Nodo));
     nuevo->valor = valor;
@@ -16,24 +17,26 @@ Nodo* crearNodo(int valor) {
 }
 
 //Agregar al principio
-Nodo* prepend(Nodo* head,int valor){
+void prepend(Nodo** head,int valor){
     Nodo* nuevo = crearNodo(valor);
-    nuevo->proximo = head;
-    return nuevo;
+    nuevo->proximo = *head;
+    *head = nuevo;
+
+
 }
 // Agregar al final
-Nodo* append(Nodo* head, int val){
+void append(Nodo** head, int val){
     Nodo* nuevoNodo = crearNodo(val);
-    if(head == NULL){
-        return nuevoNodo;
+    if(*head == NULL){
+       *head = nuevoNodo;
     }else{
-        Nodo* actual = head;
+        Nodo* actual = *head;
         while (actual->proximo != NULL){
             actual = actual->proximo;
         }
         actual->proximo = nuevoNodo;
     }
-    return head;
+
 }
 // Cantidad de elementos en la lista
 int tamanio(Nodo* head){
@@ -44,8 +47,8 @@ int tamanio(Nodo* head){
     }
     return contador;
 }
-// Devuelve el indice del primer nodo que tiene el valor dado,
-// y devuelve -1  si no se encontró
+/* Devuelve el indice del primer nodo que tiene el valor dado,
+ y devuelve -1  si no se encontró*/
 int buscar(Nodo* head,int valor){
     if(head == NULL){
         return -1;
@@ -61,8 +64,8 @@ int buscar(Nodo* head,int valor){
     }
     return -1;
 }
-// Elimina el primer nodo que tenga el valor dado.
-// falta lo de free() q no entiendo
+/* Elimina el primer nodo que tenga el valor dado.*/
+// falta lo de free()
 Nodo* eliminar(Nodo* head,int valor){
     if(head == NULL){
         exit(0);
@@ -94,19 +97,16 @@ void imprimirLista(Nodo* head){
 int main(){
     Nodo* lista = NULL;
 
-    lista = append(lista, 3);
-    lista = append(lista, 4);
-    lista = append(lista, 23);
-
-    lista = prepend(lista,7);
-
-    lista = eliminar(lista,23);
+    prepend(&lista,5);
+    append(&lista, 3);
+    append(&lista,10);
+    prepend(&lista,8);
 
     imprimirLista(lista);
 
-    printf("La cantidad de nodos de la lista es: %d \n", tamanio(lista));
+    printf("La cantidad de nodos de la lista es: %d\n", tamanio(lista));
 
-    printf("Se encontro el valor en la posicion: %d\n" ,buscar(lista, 4));
+    printf("Se encontro el valor en la posicion: %d\n" ,buscar(lista, 5));
 
 
     return 0;
