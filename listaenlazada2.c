@@ -44,10 +44,12 @@ void imprimirLista(Nodo* lista){
 }
 int main(){
     Nodo* lista = NULL;
+
     agregar(&lista,5);
     agregar(&lista,6);
     agregar(&lista,3);
     agregar(&lista,4);
+    agregar(&lista,-5);
     imprimirLista(lista);
     return 0;
 }
