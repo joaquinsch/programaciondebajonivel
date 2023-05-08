@@ -100,17 +100,16 @@ int main(){
     append(&lista, 3);
     append(&lista,10);
     prepend(&lista,8);
+
     eliminar(&lista,5);
     eliminar(&lista,3);
     eliminar(&lista,8);
-
 
     imprimirLista(lista);
 
     printf("La cantidad de nodos de la lista es: %d\n", tamanio(lista));
 
     printf("Se encontro el valor en la posicion: %d\n" ,buscar(lista, 5));
-
 
     return 0;
 
