@@ -66,24 +66,23 @@ int buscar(Nodo* head,int valor){
 }
 /* Elimina el primer nodo que tenga el valor dado.*/
 // falta lo de free()
-Nodo* eliminar(Nodo* head,int valor){
-    if(head == NULL){
+void eliminar(Nodo** head,int valor){
+    if(*head == NULL){
         exit(0);
     }
-    if(head->valor == valor){
-        head = head->proximo;
-        return head;
+    if((*head)->valor == valor){
+        *head =(*head)->proximo;
     }
-    Nodo* actual = head;
+    Nodo* actual = *head;
     while(actual->proximo != NULL){
         if(actual->proximo->valor == valor){
             actual->proximo = actual->proximo->proximo;
-            return head;
+            return;
         }
         actual = actual->proximo;
     }
 
-    return head;
+
 }
 
 void imprimirLista(Nodo* head){
@@ -101,6 +100,10 @@ int main(){
     append(&lista, 3);
     append(&lista,10);
     prepend(&lista,8);
+    eliminar(&lista,5);
+    eliminar(&lista,3);
+    eliminar(&lista,8);
+
 
     imprimirLista(lista);
 
